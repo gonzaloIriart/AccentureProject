@@ -17,13 +17,13 @@ namespace AccentureAccademyLibrary.GonzaloIriart.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Author()
         {
-            this.WrittenBy = new HashSet<WrittenBy>();
+            this.Book = new HashSet<Book>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WrittenBy> WrittenBy { get; set; }
+        public virtual ICollection<Book> Book { get; set; }
     }
 }

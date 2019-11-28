@@ -5,15 +5,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="e23cb124edff47298c4230d7e35d34de" Name="Diagram1">
-        <EntityTypeShape EntityType="AccentureAccademyLibraryModel.Author" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AccentureAccademyLibraryModel.Book" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="AccentureAccademyLibraryModel.Genre" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AccentureAccademyLibraryModel.Publisher" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AccentureAccademyLibraryModel.WrittenBy" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
-        <AssociationConnector Association="AccentureAccademyLibraryModel.FK_Book_Author_Author" ManuallyRouted="false" />
-        <AssociationConnector Association="AccentureAccademyLibraryModel.FK_Book_Author_Book" ManuallyRouted="false" />
-        <AssociationConnector Association="AccentureAccademyLibraryModel.FK_Book_Genre" ManuallyRouted="false" />
-        <AssociationConnector Association="AccentureAccademyLibraryModel.FK_Book_Publisher" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="AccentureAccademyLibraryModel.Author" Width="1.5" PointX="0.75" PointY="4.875" />
+        <EntityTypeShape EntityType="AccentureAccademyLibraryModel.Book" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="AccentureAccademyLibraryModel.Genre" Width="1.5" PointX="0.75" PointY="7.25" />
+        <EntityTypeShape EntityType="AccentureAccademyLibraryModel.Publisher" Width="1.5" PointX="0.75" PointY="1.75" />
+        <AssociationConnector Association="AccentureAccademyLibraryModel.FK_Book_Genre" />
+        <AssociationConnector Association="AccentureAccademyLibraryModel.FK_Book_Publisher" />
+        <AssociationConnector Association="AccentureAccademyLibraryModel.WrittenBy" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

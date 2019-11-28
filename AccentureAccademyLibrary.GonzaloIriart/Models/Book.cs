@@ -17,7 +17,7 @@ namespace AccentureAccademyLibrary.GonzaloIriart.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Book()
         {
-            this.WrittenBy = new HashSet<WrittenBy>();
+            this.Author = new HashSet<Author>();
         }
     
         public int Id { get; set; }
@@ -29,9 +29,9 @@ namespace AccentureAccademyLibrary.GonzaloIriart.Models
         public int Id_Publisher { get; set; }
         public int Id_Genre { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WrittenBy> WrittenBy { get; set; }
         public virtual Genre Genre { get; set; }
         public virtual Publisher Publisher { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Author> Author { get; set; }
     }
 }

@@ -29,6 +29,5 @@ namespace AccentureAccademyLibrary.GonzaloIriart.Models
         public virtual DbSet<Book> Book { get; set; }
         public virtual DbSet<Genre> Genre { get; set; }
         public virtual DbSet<Publisher> Publisher { get; set; }
-        public virtual DbSet<WrittenBy> WrittenBy { get; set; }
     }
 }

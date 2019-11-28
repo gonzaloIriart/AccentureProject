@@ -55,10 +55,12 @@ CREATE TABLE WrittenBy
 	id_Author int not null,
 	CONSTRAINT FK_Book_Author_Author 
 		FOREIGN KEY (Id_Author) 
-		REFERENCES Author(Id),
+		REFERENCES Author(Id)
+		ON DELETE CASCADE,
     CONSTRAINT FK_Book_Author_Book 
 		FOREIGN KEY (Id_Book) 
 		REFERENCES Book(Id)
+		ON DELETE CASCADE
 );
 
 INSERT INTO Genre
