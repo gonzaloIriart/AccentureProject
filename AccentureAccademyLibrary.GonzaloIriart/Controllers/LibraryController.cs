@@ -56,8 +56,38 @@ namespace AccentureAccademyLibrary.GonzaloIriart.Controllers
             return Json(book, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult AddBook()
+        public ActionResult Edit(int id)
         {
+            Book book = db.Book.Find(id);
+            ViewBag.header = $"Editar ${book.Title}";
+            return View("AddBook", book);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Book book, IEnumerable<int> Authors)
+        {
+            Book databaseBook = db.Book.Find(book.Id);
+            databaseBook.Title = book.Title;
+            databaseBook.Id_Genre = book.Id_Genre;
+            databaseBook.Cover = book.Cover;
+            databaseBook.ISBN = book.ISBN;
+            databaseBook.Description = book.Description;
+            databaseBook.ReleaseDate = book.ReleaseDate;
+            databaseBook.Id_Publisher = book.Id_Publisher;
+            databaseBook.Author.Clear();
+
+            foreach (int actualAuthor in Authors)
+            {
+                Author by = db.Author.Find(actualAuthor);
+                databaseBook.Author.Add(by);
+            }
+            db.SaveChanges();
+            return Content("Libro editado satisfactoriamente");
+        }
+
+    public ActionResult AddBook()
+        {
+            ViewBag.header = "Add Book";
             return View();
         }
 
@@ -101,6 +131,8 @@ namespace AccentureAccademyLibrary.GonzaloIriart.Controllers
             this.db.SaveChanges();
             return RedirectToAction("AddBook");
         }
+
+        //GENRES
 
         public ActionResult Genre()
         {

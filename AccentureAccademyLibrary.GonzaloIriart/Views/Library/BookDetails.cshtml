@@ -1,0 +1,28 @@
+﻿@model AccentureAccademyLibrary.GonzaloIriart.Models.Book
+@{
+    ViewBag.Title = "BookDetails" + this.Model.Title;
+}
+<section id="bookDetails">
+    <h2>Book Details: @this.Model.Title</h2>
+    <img src="@this.Model.Cover" alt="Cover" />
+    <h3>Written by:</h3>
+    <ul>
+        @foreach (var a in this.Model.Author)
+        {
+            <li>@a.Name</li>
+        }
+    </ul>
+    <p for="txtReleaseDate">Release Date: @this.Model.ReleaseDate.Year</p>
+
+    <p>ISBN: @this.Model.ISBN</p>
+
+    <p>@this.Model.Description</p>
+    <div class="action-buttons">
+        <button  class="glyphicon glyphicon-pencil" id="edit-book"></button>
+        <button class="glyphicon glyphicon-trash" id="delete-book"></button>
+    </div>
+</section>
+<script>    
+        document.querySelector("#edit-book").addEventListener("click", () => location.href = "/Library/Edit/" + @this.Model.Id);
+        document.querySelector("#delete-book").addEventListener("click", () => location.href = "/Library/BookDetails/" + @this.Model.Id);    
+</script>
