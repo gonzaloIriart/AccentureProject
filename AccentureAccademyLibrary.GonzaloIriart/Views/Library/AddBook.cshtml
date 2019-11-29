@@ -6,6 +6,8 @@
     List<Genre> genres = db.Genre.OrderBy(g => g.Name).ToList();
     List<Publisher> publishers = db.Publisher.OrderBy(p => p.Name).ToList();
 }
+    <button class="glyphicon glyphicon-circle-arrow-left"></button>
+    <input type="type" name="name" value="" placeholder="Search.." /><button class="glyphicon glyphicon-search"></button>
 <h2>AddBook Form</h2>
 
 <form id="addForm" method="post">

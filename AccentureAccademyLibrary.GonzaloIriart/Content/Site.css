@@ -22,3 +22,41 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.book-item {
+    background: #f7efed;
+    margin: 15px;
+    color: #33546d;
+    width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 12px;
+    text-align: center;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+button {
+    padding: 10px;
+    font-size: 1.3em;
+    border-radius: 50%;
+}
+
+.book-item:hover {
+    cursor: pointer;
+}
+
+    .book-item img {
+        width: 90%;
+        
+    }
+
+#bookList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+}
