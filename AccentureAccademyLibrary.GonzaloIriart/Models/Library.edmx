@@ -47,34 +47,6 @@
           <Property Name="Book_Id" Type="int" Nullable="false" />
           <Property Name="Author_Id" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Book_Author_Author">
-          <End Role="Author" Type="Self.Author" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="WrittenBy" Type="Self.WrittenBy" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Author">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="WrittenBy">
-              <PropertyRef Name="Author_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Book_Author_Book">
-          <End Role="Book" Type="Self.Book" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="WrittenBy" Type="Self.WrittenBy" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Book">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="WrittenBy">
-              <PropertyRef Name="Book_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Book_Genre">
           <End Role="Genre" Type="Self.Genre" Multiplicity="1" />
           <End Role="Book" Type="Self.Book" Multiplicity="*" />
@@ -99,20 +71,40 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_WrittenBy_Author">
+          <End Role="Author" Type="Self.Author" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WrittenBy" Type="Self.WrittenBy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WrittenBy">
+              <PropertyRef Name="Author_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WrittenBy_Book">
+          <End Role="Book" Type="Self.Book" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WrittenBy" Type="Self.WrittenBy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WrittenBy">
+              <PropertyRef Name="Book_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="AccentureAccademyLibraryModelStoreContainer">
           <EntitySet Name="Author" EntityType="Self.Author" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Genre" EntityType="Self.Genre" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Publisher" EntityType="Self.Publisher" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WrittenBy" EntityType="Self.WrittenBy" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Book_Author_Author" Association="Self.FK_Book_Author_Author">
-            <End Role="Author" EntitySet="Author" />
-            <End Role="WrittenBy" EntitySet="WrittenBy" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Book_Author_Book" Association="Self.FK_Book_Author_Book">
-            <End Role="Book" EntitySet="Book" />
-            <End Role="WrittenBy" EntitySet="WrittenBy" />
-          </AssociationSet>
           <AssociationSet Name="FK_Book_Genre" Association="Self.FK_Book_Genre">
             <End Role="Genre" EntitySet="Genre" />
             <End Role="Book" EntitySet="Book" />
@@ -120,6 +112,14 @@
           <AssociationSet Name="FK_Book_Publisher" Association="Self.FK_Book_Publisher">
             <End Role="Publisher" EntitySet="Publisher" />
             <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WrittenBy_Author" Association="Self.FK_WrittenBy_Author">
+            <End Role="Author" EntitySet="Author" />
+            <End Role="WrittenBy" EntitySet="WrittenBy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WrittenBy_Book" Association="Self.FK_WrittenBy_Book">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="WrittenBy" EntitySet="WrittenBy" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>

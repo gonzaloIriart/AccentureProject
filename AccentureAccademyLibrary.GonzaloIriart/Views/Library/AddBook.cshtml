@@ -1,23 +1,11 @@
 ﻿@using AccentureAccademyLibrary.GonzaloIriart.Models
 @model Book
-
-@{
-    ViewBag.Title = "Agregar";
-}
-
-@{
-    //Opciones para hacer llegar la lista de autores
-    //1.Crear un clase del modelo que envuelva al Libro y tenga todos los datos
-    //2.Crear un DataContext en este archivo con Razor
-    //3.Pasarle la lista de autores en el BiewBag
-    //4.Hacer un control especializado que sea un selector de autores
-}
-
 @{
     AccentureAccademyLibraryEntities db = new AccentureAccademyLibraryEntities();
-    List<Author> autores = db.Author.OrderBy(au => au.Name).ToList();
+    List<Author> authors = db.Author.OrderBy(author => author.Name).ToList();
+    List<Genre> genres = db.Genre.OrderBy(g => g.Name).ToList();
+    List<Publisher> publishers = db.Publisher.OrderBy(p => p.Name).ToList();
 }
-
 <h2>AddBook Form</h2>
 
 <form id="addForm" method="post">
@@ -42,17 +30,38 @@
         <input type="text" id="txtDescription" class="form-control" name="Description" value="" />
     </div>
     <div>
-        <label for="txtGenre">Genre</label>
-        <input type="text" id="txtGenre" class="form-control" name="Genre" value="" />
+        <label for="selGenre">Genre</label>
+        <select id="selGenre" class="form-control" name="Id_Genre" value="">
+            <option>Select Genre...</option>
+            @foreach (Genre g in genres)
+            {
+                <option value="@g.Id">@g.Name</option>
+            }
+        </select>
+        <button>Add new Genre</button>
     </div>
     <div>
-        <label for="txtPublisher">Publisher</label>
-        <input type="text" id="txtPublisher" class="form-control" name="Publisher" value="" />
+        <label for="selPublisher">Publisher</label>
+        <select id="selPublisher" class="form-control" name="Id_Publisher" value="">
+            <option>Select Publisher...</option>
+            @foreach (Publisher p in publishers)
+            {
+                <option value="@p.Id">@p.Name</option>
+            }
+        </select>
+        <button>Add new Publisher</button>
     </div>
     <div id="authorsContainer">
         <div id="authorDiv">
-            <label for="txtAuthor">Author</label>
-            <input type="text" id="txtAuthor" class="form-control" name="Author" value="" />
+            <label for="selAuthor">Author</label>
+            <select id="selAuthor" class="form-control" name="Authors" value="">
+                <option>Select Author...</option>
+                @foreach (Author autor in authors)
+                {
+                    <option value="@autor.Id">@autor.Name</option>
+                }
+            </select>
+            <button>Add new Author</button>
         </div>
     </div>
     <button id="addAuthor">Add Author</button>
@@ -60,9 +69,8 @@
     <button id="addBook" style="margin-top: 1em">Send</button>
 </form>
 <script>
-
     let btnAddAuthor = document.querySelector("#addAuthor");
-    let btnAddBook = document.querySelectar("#addBook");
+    let btnAddBook = document.querySelector("#addBook");
     let authorsContainer = document.querySelector("#authorsContainer");
     btnAddAuthor.addEventListener("click", (e) => {
         e.preventDefault();
@@ -70,36 +78,11 @@
         let divClone = divAuthor.cloneNode(true);
         authorsContainer.appendChild(divClone);
     });
-    /*
-    btnAddBook.addEventListener("click", addBook(e));
-    function addBook(e) {
-        e.preventDefault();
-        let formAuthors = document.querySelectorAll("#txtAuthor");
-        console.log(formAuthors);
-        let authors = [];
-        formAuthors.forEach(fa => authors.push(fa.value));
-        let book = {
-            Title: document.querySelector("#Title").value,
-            ISBN: document.querySelector("#ISBN").value,
-            ReleaseDate: document.querySelector("#ReleaseDate").value,
-            Cover: document.querySelector("#Cover").value,
-            Genre: document.querySelector("#Genre").value,
-            Publisher: document.querySelector("#Publisher").value,
-            Description: document.querySelector("#Description").value,
-        }
 
-        document.querySelector("#addForm").ajaxForm({
-            url: '/Library/AddBook',
-            data: { book, authors },
-            type: 'post',
-            success: function (res) {
-                window.location.replace("/Home/Index");
-            },
-            error: function (response, status, xhr) {
-                if (response.status == 422) {
-                    console.log(response.responseText);
-                }
-            }
-            */
+    //Add options from database to selects
+    let selectAuthor = document.querySelector("#selAuthor");
+    let selectGenre = document.querySelector("selGenre");
+    let selectPublisher = document.querySelector("#selPublisher");
+    
 </script>
 

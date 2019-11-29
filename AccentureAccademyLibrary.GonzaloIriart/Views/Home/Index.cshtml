@@ -12,7 +12,7 @@
             let lista = document.querySelector("#bookList");
 
             
-            fetch('/Library/JsonListBooks')
+            fetch('/Library/JsonBooks')
                 .then(function (response) {
                     return response.json();
                 })
@@ -21,12 +21,13 @@
                         let bookItem = document.createElement("li");
                         bookItem.classList.add("book-item");
                         let bookInfo = `
+                            <img src="${book.Cover}"/>
                             <h3>${book.Title}</h3>
-                            <p>${book.Description}</p>
-                            <img src="${book.Author}"/>
+                            <p>${book.Description}</p>                            
+                            <p>${book.Genre.Name}</p>
                         `;
                         console.log(book);
-                        book.Author.map(author => bookInfo + `<p>${author.Name}</p>`)
+                        book.Author.forEach(author => {bookInfo = bookInfo + `<p>${author.Name}</p>`})
                         bookItem.innerHTML = bookInfo;
                         lista.appendChild(bookItem);
                     })

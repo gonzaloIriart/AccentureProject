@@ -50,17 +50,18 @@ CREATE TABLE Book
 
 CREATE TABLE WrittenBy
 (
-	Id int primary key identity(1,1),
-	Id_Book int not null,
-	id_Author int not null,
-	CONSTRAINT FK_Book_Author_Author 
-		FOREIGN KEY (Id_Author) 
+	Book_Id int not null,
+	Author_Id int not null,
+	CONSTRAINT FK_WrittenBy_Author 
+		FOREIGN KEY (Author_Id) 
 		REFERENCES Author(Id)
 		ON DELETE CASCADE,
-    CONSTRAINT FK_Book_Author_Book 
-		FOREIGN KEY (Id_Book) 
+    CONSTRAINT FK_WrittenBy_Book 
+		FOREIGN KEY (Book_Id) 
 		REFERENCES Book(Id)
-		ON DELETE CASCADE
+		ON DELETE CASCADE,
+		CONSTRAINT PK_WRITTEN_BY PRIMARY KEY(Author_Id, Book_Id)
+
 );
 
 INSERT INTO Genre
@@ -109,7 +110,7 @@ VALUES
 ('Aloha','12355523','Descripcion de otro libro','link',6,6,'1500-12-25')
 
 INSERT INTO WrittenBy
-([Id_Book],[id_Author])
+([Book_Id],[Author_Id])
 VALUES
 (1,1),
 (1,2),

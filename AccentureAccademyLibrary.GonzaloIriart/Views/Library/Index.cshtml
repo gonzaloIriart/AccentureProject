@@ -1,33 +1,16 @@
-﻿@model AccentureAccademyLibrary.GonzaloIriart.Models.Book
-    @{
-        ViewBag.Title = "Index";
+﻿@model IEnumerable<AccentureAccademyLibrary.GonzaloIriart.Models.Book>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@foreach (var book in this.Model){
+    <p>@book.Title</p>
+    foreach (var author in book.Author)
+    {
+        <p>@author.Name</p>
     }
 
-    <h2>Index</h2>
+}
 
-    <head>
-    </head>
-    <body>
-        <h2>Lista de Libros</h2>
-
-        <ul id="bookList">
-        </ul>
-
-
-        <script>
-            let lista = document.querySelector("#bookList");
-            let books = @this.Model;
-            books.map(book => {
-                let bookItem = document.createElement("li");
-                bookItem.classList.add("book-item");
-                let bookInfo = `
-                            <h3>${book.Title}</h3>
-                            <p>${book.Description}</p>
-                            <img src="${book.Author}"/>
-                        `;
-                bookItem.innerHTML = bookInfo;
-                lista.appendChild(bookItem);
-            })
-
-        </script>
-    </body>
