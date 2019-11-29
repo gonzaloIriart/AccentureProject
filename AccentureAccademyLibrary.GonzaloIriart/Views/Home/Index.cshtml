@@ -4,8 +4,10 @@
     <head>
     </head>
     <body>
-        <div>
-        <button class="glyphicon glyphicon-plus" id="add-new-book"></button><span>Add book</span>
+        <a href="/Library/AddBook">
+        </a>
+        <div class="search">
+            <input type="text" name="search" value="" placeholder="Search.." /><button class="glyphicon glyphicon-search"></button>
         </div>
         <h2>Lista de Libros</h2>
         <ul id="bookList">
@@ -13,8 +15,6 @@
 
         <script>
             let lista = document.querySelector("#bookList");
-
-            
             fetch('/Library/JsonBooks')
                 .then(function (response) {
                     return response.json();
@@ -24,19 +24,19 @@
                         let bookItem = document.createElement("li");
                         bookItem.classList.add("book-item");
                         let bookInfo = `
-                            <img src="${book.Cover}"/>
-                            <h3>${book.Title}</h3>
-                            <p>${book.Description}</p>                            
-                            <p>${book.Genre.Name}</p>
-                            
-                        `;
+                                    <img src="${book.Cover}"/>
+                                    <h3>${book.Title}</h3>
+                                    <p>${book.Description}</p>
+                                    <p>${book.Genre.Name}</p>
+
+                                `;
                         console.log(book);
                         book.Author.forEach(author => { bookInfo = bookInfo + `<p>${author.Name}</p>` })
-                        bookInfo = bookInfo +`
-                            <div class="action-buttons">
-                                <button class="glyphicon glyphicon-pencil" id="edit-book"></button>
-                                <button class="glyphicon glyphicon-trash" id="delete-book"></button>
-                            </div>`
+                        bookInfo = bookInfo + `
+                                    <div class="action-buttons">
+                                        <button class="glyphicon glyphicon-pencil" id="edit-book"></button>
+                                        <button class="glyphicon glyphicon-trash" id="delete-book"></button>
+                                    </div>`
                         bookItem.innerHTML = bookInfo;
                         lista.appendChild(bookItem);
                     })

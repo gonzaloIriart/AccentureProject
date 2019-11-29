@@ -2,6 +2,10 @@
     padding-top: 50px;
     padding-bottom: 20px;
 }
+h2{
+    text-align: center;
+    margin: 20px auto;
+}
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -24,6 +28,7 @@ textarea {
 }
 
 .book-item {
+    list-style: none;
     background: #f7efed;
     margin: 15px;
     color: #33546d;
@@ -40,6 +45,11 @@ textarea {
 }
 
 button {
+    padding: 10px;
+    font-size: 1.3em;
+}
+
+.round-button {
     padding: 10px;
     font-size: 1.3em;
     border-radius: 50%;
@@ -60,3 +70,38 @@ button {
     grid-gap: 10px;
     grid-auto-rows: minmax(100px, auto);
 }
+
+.search {
+    width: 80%;
+    text-align: center;
+    margin: 20px auto;
+}
+
+.search input {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    width: 80%;
+    background: #f1f1f1;
+  }
+
+.search button {
+    width: 10%;
+    padding: 10px;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+}
+
+.nav-link{
+    color:aliceblue;
+    text-decoration: none;
+}
+
+.search::after {
+    content: "";
+}
+

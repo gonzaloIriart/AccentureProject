@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Add " + ViewBag.Name;
+}
+
+<a href="/Library/AddBook">
+    <div>
+        <i class="round-button glyphicon glyphicon-backward" id="add-new-book"></i><span>Back</span>
+    </div>
+</a>
+
+<h2>Add New @ViewBag.Name</h2>
+<form method="post" class="form-container">
+    <label for="Name"><b>@ViewBag.Name Name</b></label>
+    <input type="text" placeholder="Name..." name="Name" required>
+
+    <button type="submit" class="btn">Add @ViewBag.Name</button>
+</form>
+

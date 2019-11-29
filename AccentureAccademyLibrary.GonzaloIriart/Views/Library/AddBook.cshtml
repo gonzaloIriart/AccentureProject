@@ -6,8 +6,7 @@
     List<Genre> genres = db.Genre.OrderBy(g => g.Name).ToList();
     List<Publisher> publishers = db.Publisher.OrderBy(p => p.Name).ToList();
 }
-    <button class="glyphicon glyphicon-circle-arrow-left"></button>
-    <input type="type" name="name" value="" placeholder="Search.." /><button class="glyphicon glyphicon-search"></button>
+    <a href="/"><i class="round-button glyphicon glyphicon-circle-arrow-left"></i></a>
 <h2>AddBook Form</h2>
 
 <form id="addForm" method="post">
@@ -40,7 +39,7 @@
                 <option value="@g.Id">@g.Name</option>
             }
         </select>
-        <button>Add new Genre</button>
+        <a href="/Library/Genre" id="btnAddNew">Add new Genre</a>
     </div>
     <div>
         <label for="selPublisher">Publisher</label>
@@ -51,7 +50,7 @@
                 <option value="@p.Id">@p.Name</option>
             }
         </select>
-        <button>Add new Publisher</button>
+        <a href="/Library/Publisher" id="btnAddNewPublisher">Add new Publisher</a>
     </div>
     <div id="authorsContainer">
         <div id="authorDiv">
@@ -63,13 +62,16 @@
                     <option value="@autor.Id">@autor.Name</option>
                 }
             </select>
-            <button>Add new Author</button>
+            <a href="/Library/Author" id="btnAddNew">Add new Author</a>
         </div>
     </div>
-    <button id="addAuthor">Add Author</button>
+    <button id="addAuthor">Add another Author</button>
 
     <button id="addBook" style="margin-top: 1em">Send</button>
+
+    <div id="popupForm"></div>
 </form>
+
 <script>
     let btnAddAuthor = document.querySelector("#addAuthor");
     let btnAddBook = document.querySelector("#addBook");
@@ -81,10 +83,22 @@
         authorsContainer.appendChild(divClone);
     });
 
-    //Add options from database to selects
-    let selectAuthor = document.querySelector("#selAuthor");
-    let selectGenre = document.querySelector("selGenre");
-    let selectPublisher = document.querySelector("#selPublisher");
-    
+    //Add new data to database
+    /*let btnAddNewAuthor = document.querySelector("#btnAddNewAuthor");
+    let btnAddNewGenre = document.querySelector("#btnAddNewGenre");
+    let btnAddNewPublisher = document.querySelector("#btnAddNewPublisher");
+    btnAddNewAuthor.addEventListener("click", e => {
+        e.preventDefault();
+        addNewItem("Library/Author", "Author");
+    });
+    btnAddNewGenre.addEventListener("click", e => {
+        e.preventDefault();
+        addNewItem("Library/Genre", "Genre");
+    });
+    btnAddNewPublisher.addEventListener("click", e => {
+        e.preventDefault();
+        addNewItem("Library/Publisher", "Publisher");
+    });
+    */
 </script>
 
