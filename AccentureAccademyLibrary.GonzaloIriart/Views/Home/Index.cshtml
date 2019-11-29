@@ -1,45 +1,95 @@
-﻿@{
+﻿@using AccentureAccademyLibrary.GonzaloIriart.Models
+@{
     ViewBag.Title = "Library";
 }
-    <head>
-    </head>
-    <body>
-        <a href="/Library/AddBook">
-        </a>
-        <div class="search">
-            <input type="text" name="search" value="" placeholder="Search.." /><button class="glyphicon glyphicon-search"></button>
+@{
+    AccentureAccademyLibraryEntities db = new AccentureAccademyLibraryEntities();
+    List<Author> authors = db.Author.OrderBy(author => author.Name).ToList();
+    List<Genre> genres = db.Genre.OrderBy(g => g.Name).ToList();
+    List<Publisher> publishers = db.Publisher.OrderBy(p => p.Name).ToList();
+}
+<head>
+</head>
+<body>
+    <a href="/Library/AddBook">
+    </a>
+    <div class="search">
+        <input type="text" name="search" value="" placeholder="Search.." /><button class="glyphicon glyphicon-search"></button>
+    </div>
+    <div class="filters container">
+        <div>
+            <label for="selAuthor">Author</label>
+            <select id="selAuthor" class="form-control" value="">
+                <option>Select Author...</option>
+                @foreach (Author a in authors)
+                {
+                    <option value="@a.Id">
+                        @a.Name
+                    </option>
+                }
+            </select>
         </div>
-        <h2>Lista de Libros</h2>
-        <ul id="bookList">
-        </ul>
+        <div>
+            <label for="selGenre">Genre</label>
+            <select id="selGenre" class="form-control" value="">
+                <option>Select Genre...</option>
 
-        <script>
-            let lista = document.querySelector("#bookList");
-            fetch('/Library/JsonBooks')
-                .then(function (response) {
-                    return response.json();
+                @foreach (Genre g in genres)
+                {
+                    <option value="@g.Id">
+                        @g.Name
+                    </option>
+                }
+            </select>
+
+        </div>
+        <div>
+            <label for="selPublisher">Publisher</label>
+            <select id="selPublisher" class="form-control" value="">
+                <option>Select Publisher...</option>
+                @foreach (Publisher p in publishers)
+                {
+                    <option value="@p.Id">
+                        @p.Name
+                    </option>
+                }
+            </select>
+
+        </div>
+        <button id="btnFilter">Filter</button>
+    </div>
+   
+    <h2>Lista de Libros</h2>
+    <ul id="bookList">
+    </ul>
+
+    <script>
+        let lista = document.querySelector("#bookList");
+        fetch('/Library/JsonBooks')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (myJson) {
+                myJson.map(book => {
+                    let bookItem = document.createElement("li");
+                    bookItem.classList.add("book-item");
+                    let bookInfo = `
+                                                <img src="${book.Cover}"/>
+                                                <h3>${book.Title}</h3>
+                                                <p>${book.Description}</p>
+                                                <p>${book.Genre.Name}</p>
+                                            `;
+                    console.log(book);
+                    book.Author.forEach(author => { bookInfo = bookInfo + `<p>${author.Name}</p>` })
+                    bookInfo = bookInfo + `
+                                                <div class="action-buttons">
+                                                    <a href="/Library/Edit?id=${book.Id}"><button class="glyphicon glyphicon-pencil" id="edit-book"></button></a>
+                                                    <a href="/Library/Delete?id=${book.Id}"><button class="glyphicon glyphicon-trash" id="delete-book"></button></a>
+                                                </div>`
+                    bookItem.addEventListener("click", () => location.href = "/Library/BookDetails/" + book.Id);
+                    bookItem.innerHTML = bookInfo;
+                    lista.appendChild(bookItem);
                 })
-                .then(function (myJson) {
-                    myJson.map(book => {
-                        let bookItem = document.createElement("li");
-                        bookItem.classList.add("book-item");
-                        let bookInfo = `                                            
-                                    <img src="${book.Cover}"/>
-                                    <h3>${book.Title}</h3>
-                                    <p>${book.Description}</p>
-                                    <p>${book.Genre.Name}</p>
-                                `;
-                        console.log(book);
-                        book.Author.forEach(author => { bookInfo = bookInfo + `<p>${author.Name}</p>` })
-                        bookInfo = bookInfo + `
-                                    <div class="action-buttons">
-                                        <a href="/Library/Edit?id=${book.Id}"><button class="glyphicon glyphicon-pencil" id="edit-book"></button></a>
-                                        <a href="/Library/Delete?id=${book.Id}"><button class="glyphicon glyphicon-trash" id="delete-book"></button></a>
-                                    </div>`
-                        bookItem.addEventListener("click", () => location.href = "/Library/BookDetails/" + book.Id);
-                        bookItem.innerHTML = bookInfo;
-                        lista.appendChild(bookItem);
-                    })
-                })
-        </script>
-    </body>
+            })
+    </script>
+</body>

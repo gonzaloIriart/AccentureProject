@@ -63,6 +63,12 @@ namespace AccentureAccademyLibrary.GonzaloIriart.Controllers
             return View("AddBook", book);
         }
 
+        public ActionResult Delete(int id)
+        {
+            Book book = db.Book.Find(id);
+            return RedirectToAction("/");
+        }
+
         [HttpPost]
         public ActionResult Edit(Book book, IEnumerable<int> Authors)
         {
@@ -82,7 +88,7 @@ namespace AccentureAccademyLibrary.GonzaloIriart.Controllers
                 databaseBook.Author.Add(by);
             }
             db.SaveChanges();
-            return Content("Libro editado satisfactoriamente");
+            return RedirectToAction("/");
         }
 
     public ActionResult AddBook()
@@ -147,6 +153,5 @@ namespace AccentureAccademyLibrary.GonzaloIriart.Controllers
             this.db.SaveChanges();
             return RedirectToAction("AddBook");
         }
-
     }
 }
