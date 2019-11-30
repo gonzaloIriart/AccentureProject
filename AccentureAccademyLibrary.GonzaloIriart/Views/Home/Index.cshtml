@@ -82,10 +82,10 @@
         });
         let btnFilter = document.querySelector("#btnFilter");
         btnFilter.addEventListener("click", () => {
-            let edit = document.querySelector("#selEditorial").value;
+            let publisher = document.querySelector("#selPublisher").value;
             let genre = document.querySelector("#selGenre").value;
             let author = document.querySelector("#selAuthor").value;
-                fetch('/Library/Filter?g=' + genre + '&e=' + edit +'&a=' +author)
+                fetch('/Library/Filter?g=' + genre + '&p=' + publisher + '&a=' + author)
                     .then(response => { return response.json(); }) 
                     .then(myJson => {
                         renderBookList(myJson);
