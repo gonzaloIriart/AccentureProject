@@ -59,14 +59,16 @@ namespace AccentureAccademyLibrary.GonzaloIriart.Controllers
         public ActionResult Edit(int id)
         {
             Book book = db.Book.Find(id);
-            ViewBag.header = $"Editar ${book.Title}";
+            ViewBag.header = $"Editar {book.Title}";
             return View("AddBook", book);
         }
 
         public ActionResult Delete(int id)
         {
             Book book = db.Book.Find(id);
-            return RedirectToAction("/");
+            this.db.Book.Remove(book);
+            this.db.SaveChanges();
+            return RedirectToAction("/Home/Index");
         }
 
         [HttpPost]
@@ -88,13 +90,14 @@ namespace AccentureAccademyLibrary.GonzaloIriart.Controllers
                 databaseBook.Author.Add(by);
             }
             db.SaveChanges();
-            return RedirectToAction("/");
+            return RedirectToAction("/Home/Index");
         }
 
     public ActionResult AddBook()
         {
+            Book book = new Book();
             ViewBag.header = "Add Book";
-            return View();
+            return View(book);
         }
 
         [HttpPost]
