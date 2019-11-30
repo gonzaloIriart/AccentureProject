@@ -80,6 +80,17 @@
                     });
             }
         });
+        let btnFilter = document.querySelector("#btnFilter");
+        btnFilter.addEventListener("click", () => {
+            let edit = document.querySelector("#selEditorial").value;
+            let genre = document.querySelector("#selGenre").value;
+            let author = document.querySelector("#selAuthor").value;
+                fetch('/Library/Filter?g=' + genre + '&e=' + edit +'&a=' +author)
+                    .then(response => { return response.json(); }) 
+                    .then(myJson => {
+                        renderBookList(myJson);
+                    });
+        })
         function renderBookList(books) {
             lista.innerHTML = '';
             books.map(book => {
