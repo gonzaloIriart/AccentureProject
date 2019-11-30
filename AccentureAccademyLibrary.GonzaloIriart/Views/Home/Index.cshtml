@@ -11,10 +11,8 @@
 <head>
 </head>
 <body>
-    <a href="/Library/AddBook">
-    </a>
     <div class="search">
-        <input type="text" name="search" value="" placeholder="Search.." /><button class="glyphicon glyphicon-search"></button>
+    <input type="text" value="" placeholder="Search.." /><button class="glyphicon glyphicon-search"></button>
     </div>
     <div class="filters container">
         <div>
@@ -70,7 +68,21 @@
                 return response.json();
             })
             .then(function (myJson) {
-                myJson.map(book => {
+                renderBookList(myJson);                
+            });
+        let searchInput = document.querySelector(".search input");
+        searchInput.addEventListener("keyup", () => {
+            if (searchInput.value.length >= 2) {
+                fetch('/Library/Search?search=' + searchInput.value)
+                    .then(response => { return response.json(); })
+                    .then(myJson => {
+                        renderBookList(myJson);
+                    });
+            }
+        });
+        function renderBookList(books) {
+            lista.innerHTML = '';
+            books.map(book => {
                     let bookItem = document.createElement("li");
                     bookItem.classList.add("book-item");
                     let bookInfo = `
@@ -90,6 +102,6 @@
                     bookItem.innerHTML = bookInfo;
                     lista.appendChild(bookItem);
                 })
-            })
+        }
     </script>
 </body>
