@@ -57,7 +57,7 @@
         <button id="btnFilter">Filter</button>
     </div>
    
-    <h2>Lista de Libros</h2>
+    <h2 style="font-size: 5rem;">Lista de Libros</h2>
     <ul id="bookList">
     </ul>
 
@@ -95,8 +95,8 @@
                     book.Author.forEach(author => { bookInfo = bookInfo + `<p>${author.Name}</p>` })
                     bookInfo = bookInfo + `
                                                 <div class="action-buttons">
-                                                    <a href="/Library/Edit?id=${book.Id}"><button class="glyphicon glyphicon-pencil" id="edit-book"></button></a>
-                                                    <a href="/Library/Delete?id=${book.Id}"><button class="glyphicon glyphicon-trash" id="delete-book"></button></a>
+                                                    <a href="/Library/Edit?id=${book.Id}"><button class="round-button glyphicon glyphicon-pencil" id="edit-book"></button></a>
+                                                    <a href="/Library/Delete?id=${book.Id}"><button class="round-button glyphicon glyphicon-trash" id="delete-book"></button></a>
                                                 </div>`
                     bookItem.addEventListener("click", () => location.href = "/Library/BookDetails/" + book.Id);
                     bookItem.innerHTML = bookInfo;

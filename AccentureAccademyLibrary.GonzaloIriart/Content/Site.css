@@ -1,6 +1,10 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: #F7F8F3;
+    color: #2C3D63;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 1.8rem;
 }
 h2{
     text-align: center;
@@ -24,7 +28,7 @@ h2{
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: 380px;
 }
 
 .book-item {
@@ -32,12 +36,14 @@ textarea {
     background: #f7efed;
     margin: 15px;
     color: #33546d;
-    width: 320px;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     padding: 12px;
     text-align: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
+
 
 .action-buttons {
     display: flex;
@@ -53,7 +59,17 @@ button {
     padding: 10px;
     font-size: 1.3em;
     border-radius: 50%;
+    border: solid 1px #FF6F5E;
+    color: #FF6F5E;
+    background-color: inherit;
 }
+
+    .round-button:hover {
+        font-size: 1.6em;
+        color: #f59d93;
+        border: solid 1px #f59d93;
+        transition: all 0.1s ease-out;
+    }
 
 .book-item:hover {
     cursor: pointer;
@@ -65,10 +81,9 @@ button {
 }
 
 #bookList {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
-    grid-auto-rows: minmax(100px, auto);
+    width: 70vw;
+    margin: 20vh auto 0 auto;
+    padding: 2rem;
 }
 
 .search {
@@ -115,10 +130,14 @@ button {
 
 .filters{
     display: flex;
+    flex-wrap:wrap;
+    flex-direction: column;
+    align-content: center;
+    text-align: center;
 }
 
 .filters div{
-    width: 30%;
+    width: 50%;
 }
 
 #btnFilter{
@@ -126,4 +145,26 @@ button {
     height: 40px;
     margin-top: auto;
 
+}
+
+@media screen and (min-width: 768px) {
+    #bookList {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 1.5rem;
+    }
+    .filters {
+        flex-direction: row;
+    }
+    .filters div {
+        width: 30%;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    #bookList {
+        display: grid;
+        width: 80vw;
+        grid-template-columns: repeat(3, 1fr);
+    }
 }

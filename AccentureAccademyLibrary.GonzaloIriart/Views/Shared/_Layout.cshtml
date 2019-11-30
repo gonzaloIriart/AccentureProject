@@ -6,29 +6,29 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="https://fonts.googleapis.com/css?family=Oxygen&display=swap" rel="stylesheet"/>
     <link href="~/Content/Site.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:#2C3D63; box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+            <div class="navbar-header" >
                 @Html.ActionLink("Accenture Accademy", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <a class="nav-link" href="/Library/AddBook">
-                        <i class="round-button glyphicon glyphicon-plus" id="add-new-book"></i>
-                        <span>Add book</span>
-                    </a>
-                    <a class="nav-link" href="/Library/Recommend">
-                        <i class="round-button glyphicon glyphicon-star" id="btn-recommend"></i>
-                        <span>Recommend</span>
-                    </a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Library/AddBook">
+                            <i class="glyphicon glyphicon-plus" id="add-new-book"></i>
+                            <span>Add book</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Library/Recommend">
+                            <i class="glyphicon glyphicon-star" id="btn-recommend"></i>
+                            <span>Recommend</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
