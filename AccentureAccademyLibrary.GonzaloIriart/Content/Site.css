@@ -64,12 +64,12 @@ button {
     background-color: inherit;
 }
 
-    .round-button:hover {
-        font-size: 1.6em;
-        color: #f59d93;
-        border: solid 1px #f59d93;
-        transition: all 0.1s ease-out;
-    }
+.round-button:hover {
+    font-size: 1.6em;
+    color: #f59d93;
+    border: solid 1px #f59d93;
+    transition: all 0.1s ease-out;
+}
 
 .book-item:hover {
     cursor: pointer;
@@ -140,11 +140,11 @@ button {
     width: 50%;
 }
 
-#btnFilter{
-    width:10%;
-    height: 40px;
-    margin-top: auto;
-
+#btnFilter {
+    width:30%;
+    margin: 10px auto;
+    justify-content:center;
+    border-radius: 4px
 }
 
 @media screen and (min-width: 768px) {
@@ -153,11 +153,14 @@ button {
         grid-template-columns: 1fr 1fr;
         grid-column-gap: 1.5rem;
     }
+
     .filters {
         flex-direction: row;
     }
+
     .filters div {
         width: 30%;
+        margin: 0 auto;
     }
 }
 
