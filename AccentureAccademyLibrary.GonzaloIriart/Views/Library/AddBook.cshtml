@@ -19,7 +19,7 @@
 <form id="addForm" method="post">
     <div>
         <label for="txtTitulo">Title</label>
-        <input type="text" id="txtTitulo" class="form-control" name="Title" value="@this.Model.Title" pattern="[A-Za-z0-9]{4,50}"/>
+        <input type="text" id="txtTitulo" class="form-control" name="Title" value="@this.Model.Title" pattern="[a-zA-Z0-9\s]{4,50}"/>
     </div>
     <div>
         <label for="txtReleaseDate">Release Date</label>
@@ -27,7 +27,7 @@
     </div>
     <div>
         <label for="txtCover">Cover</label>
-        <input type="text" id="txtCover" class="form-control" name="Cover" value="@this.Model.Cover" pattern="[A-Za-z0-9]{4,50}"/>
+        <input type="text" id="txtCover" class="form-control" name="Cover" value="@this.Model.Cover" />
     </div>
     <div>
         <label for="txtISBN">ISBN</label>
@@ -35,7 +35,7 @@
     </div>
     <div>
         <label for="txtDescription">Description</label>
-        <input type="text" id="txtDescription" class="form-control" name="Description" value="@this.Model.Description" pattern="[A-Za-z0-9]{20,700}"/>
+        <input type="text" id="txtDescription" class="form-control" name="Description" value="@this.Model.Description" />
     </div>
     <div>
         <label for="selGenre">Genre</label>
