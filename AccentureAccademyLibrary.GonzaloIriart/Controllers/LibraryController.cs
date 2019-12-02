@@ -137,6 +137,7 @@ namespace AccentureAccademyLibrary.GonzaloIriart.Controllers
                 }
                 db.Book.Add(book);
                 db.SaveChanges();
+                /*En vez el ViewBag deberias usar el TempData[""successMessage] para pasar un mensaje de un controlador a otro con el RedirectToAction*/
                 ViewBag.successMessage = "Libro añadido con exito";
                 return RedirectToAction("Index", "Home");
             }
@@ -196,8 +197,10 @@ namespace AccentureAccademyLibrary.GonzaloIriart.Controllers
         
         public ActionResult AddPublisher()
         {
-            ViewBag.Name = "Publisher";
-            return View();
+                ViewBag.Name = "Publisher";
+                ViewBag.Title = "Add Publisher";
+                ViewBag.List = "ListPublisher";
+                return View();
         }
 
         [HttpPost]
@@ -205,7 +208,7 @@ namespace AccentureAccademyLibrary.GonzaloIriart.Controllers
         {
             db.Publisher.Add(p);
             db.SaveChanges();
-            return RedirectToAction("AddBook");
+            return RedirectToAction("ListPublisher");
         }
 
         public ActionResult EditPublisher(int id)
@@ -250,7 +253,7 @@ namespace AccentureAccademyLibrary.GonzaloIriart.Controllers
         {
             this.db.Author.Add(Author);
             this.db.SaveChanges();
-            return RedirectToAction("AddBook");
+            return RedirectToAction("/ListAuthor");
         }
 
 
@@ -290,7 +293,7 @@ namespace AccentureAccademyLibrary.GonzaloIriart.Controllers
             ViewBag.Name = "Genre";
             ViewBag.Title = "Add Genre";
             ViewBag.List = "ListGenre";
-            return View("Publisher");
+            return View("AddPublisher");
         }
 
         [HttpPost]
