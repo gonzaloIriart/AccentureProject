@@ -7,12 +7,19 @@
     List<Publisher> publishers = db.Publisher.OrderBy(p => p.Name).ToList();
 }
 <a href="/"><i class="round-button glyphicon glyphicon-circle-arrow-left"></i></a>
-<h2>@this.ViewBag.Header</h2>
+<h2>@this.ViewBag.header</h2>
+
+@if (this.ViewBag.errorMessage!=null)
+{
+    <div class="alert-warning">
+        @this.ViewBag.errorMessage
+    </div>
+}
 
 <form id="addForm" method="post">
     <div>
         <label for="txtTitulo">Title</label>
-        <input type="text" id="txtTitulo" class="form-control" name="Title" value="@this.Model.Title" />
+        <input type="text" id="txtTitulo" class="form-control" name="Title" value="@this.Model.Title" pattern="[A-Za-z0-9]{4,50}"/>
     </div>
     <div>
         <label for="txtReleaseDate">Release Date</label>
@@ -20,15 +27,15 @@
     </div>
     <div>
         <label for="txtCover">Cover</label>
-        <input type="text" id="txtCover" class="form-control" name="Cover" value="@this.Model.Cover" />
+        <input type="text" id="txtCover" class="form-control" name="Cover" value="@this.Model.Cover" pattern="[A-Za-z0-9]{4,50}"/>
     </div>
     <div>
         <label for="txtISBN">ISBN</label>
-        <input type="text" id="txtISBN" class="form-control" name="ISBN" value="@this.Model.ISBN" />
+        <input type="text" id="txtISBN" class="form-control" name="ISBN" value="@this.Model.ISBN" pattern="[0-9]{4,20}"/>
     </div>
     <div>
         <label for="txtDescription">Description</label>
-        <input type="text" id="txtDescription" class="form-control" name="Description" value="@this.Model.Description" />
+        <input type="text" id="txtDescription" class="form-control" name="Description" value="@this.Model.Description" pattern="[A-Za-z0-9]{20,700}"/>
     </div>
     <div>
         <label for="selGenre">Genre</label>
@@ -43,30 +50,33 @@
                 </option>
             }
         </select>
-        <a href="/Library/Genre" id="btnAddNew">Add new Genre</a>
+        <a href="/Library/AddGenre" id="btnAddNew">Add new Genre</a>
     </div>
     <div>
         <label for="selPublisher">Publisher</label>
         <select id="selPublisher" class="form-control" name="Id_Publisher" value="">
             <option>Select Publisher...</option>
-            @foreach (Publisher p in publishers)
-            {
-                <option @(p.Id.Equals(p.Id) ? "selected" : "")
-                        value="@p.Id">
-                    @p.Name
-                </option>
+           
+                @foreach (Publisher p in publishers)
+                {
+                    <option @(p.Id.Equals(p.Id) ? "selected" : "")
+                            value="@p.Id">
+                        @p.Name
+                    </option>
+                }
             }
         </select>
-        <a href="/Library/Publisher" id="btnAddNewPublisher">Add new Publisher</a>
+        <a href="/Library/AddPublisher" id="btnAddNewPublisher">Add new Publisher</a>
     </div>
     <div id="authorsContainer">
-        <div id="authorDiv">
-            <label for="selAuthor">Author</label>
-            @if (this.Model.Author != null)
+
+        <label for="selAuthor">Author</label>
+        <div id="authorDiv" >
+            @if (this.Model.Author.Count != 0)
             {
                 foreach (Author autorLibro in this.Model.Author)
                 {
-                    <select id="selAuthor" class="form-control" name="Authors" value="">
+                    <select id="selAuthor" class="form-inline" name="Authors" value="">
                         <option>Seleccione un autor...</option>
                         @foreach (Author autorActual in authors)
                         {
@@ -76,33 +86,27 @@
                             </option>
                         }
                     </select>
+
                 }
             }
             else
             {
-                <select id="selAuthor" class="form-control" name="Authors" value="">
+                <select id="selAuthor" class="form-inline"  name="Authors" value="">
                     <option selected>Seleccione un autor...</option>
                     @foreach (Author autor in authors)
                     {
                         <option value="@autor.Id">@autor.Name</option>
                     }
                 </select>
+                <span class="glyphicon glyphicon-minus round-button" onClick="delete_select(this)"></span>
             }
-            @{/*
 
-                <option>Select Author...</option>
-                @foreach (Author autor in authors)
-                {
-                    <option value="@autor.Id">@autor.Name</option>
-                }
-                </select>
-            */}
-            <a href="/Library/Author" id="btnAddNew">Add new Author</a>
+            <a href="/Library/AddAuthor" id="btnAddNew">Add new Author</a>
         </div>
     </div>
-    <button id="addAuthor">Add another Author</button>
-
-    <button id="addBook" style="margin-top: 1em">Send</button>
+    <button id="addAuthor">Add another Author to the book</button>
+    <div></div>
+    <button id="addBook" style="margin-top: 1em;background-color:#2C3D63;color:#f7efed">Send</button>
 
     <div id="popupForm"></div>
 </form>
@@ -113,10 +117,18 @@
     let authorsContainer = document.querySelector("#authorsContainer");
     btnAddAuthor.addEventListener("click", (e) => {
         e.preventDefault();
+        let idClass = 0;
+        idClass++;        
         let divAuthor = document.querySelector("#authorDiv");
         let divClone = divAuthor.cloneNode(true);
-        authorsContainer.appendChild(divClone);
+        divClone.classList.add(idClass);
+        authorsContainer.appendChild(divClone);        
     });
+    function delete_select(e)
+    {
+        e.parentNode.parentNode.parentNode.removeChild(e.parentNode.parentNode);
+}
+  
 
     //Add new data to database
     /*let btnAddNewAuthor = document.querySelector("#btnAddNewAuthor");

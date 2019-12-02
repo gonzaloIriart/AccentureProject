@@ -1,9 +1,10 @@
 ﻿@model AccentureAccademyLibrary.GonzaloIriart.Models.Book
 @{
-    ViewBag.Title = "BookDetails" + this.Model.Title;
+    ViewBag.Title = this.ViewBag.header;
 }
+    <h1>@this.ViewBag.header</h1>
 <section id="bookDetails">
-    <h2>Book Details: @this.Model.Title</h2>
+    <h2>@this.Model.Title</h2>
     <img src="@this.Model.Cover" alt="Cover" />
     <h3>Written by:</h3>
     <ul>

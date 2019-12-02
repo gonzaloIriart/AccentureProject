@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = this.ViewBag.Name;
+}
+
+    <h2>@this.ViewBag.Name</h2>
+
+
+<main class="container">
+    <div class="text-right">
+        <a class="glyphicon glyphicon-plus" href="/Library/@this.ViewBag.RouteAdd/" style="font-size:1.5em"></a>
+    </div>
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var listItem in ViewBag.List)
+            {
+                <tr>
+                    <td style="padding: 1.2em">@listItem.Name</td>
+                    <td class="text-right text-center">
+                        <a class="glyphicon glyphicon-edit" href="/Library/@this.ViewBag.Route/@listItem.Id" style="padding: 0.4em; font-size:1.5em; margin-right:15px"></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</main>

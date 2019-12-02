@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = this.ViewBag.Title;
+}
+
+<a href="/Library/@this.ViewBag.List">
+    <div>
+        <i class="round-button glyphicon glyphicon-backward" id="add-new-book"></i><span>Back To List</span>
+    </div>
+</a>
+
+<h2>this.ViewBag.Title</h2>
+<form method="post" class="form-container">
+    <label for="Name"><b>@ViewBag.Name Name</b></label>
+    @if (ViewBag.Value == null)
+    {
+        <input type="text" placeholder="Name..." name="Name" value="" required>
+    }
+    else
+    {
+        <input type="text" placeholder="Name..." name="Name" value="@ViewBag.Value" required>
+    }
+
+
+    <button type="submit" class="btn">@this.ViewBag.Title</button>
+</form>
+

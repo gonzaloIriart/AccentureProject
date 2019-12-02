@@ -218,8 +218,9 @@
     <Content Include="Views\Library\Index.cshtml" />
     <Content Include="Views\Library\Book.cshtml" />
     <Content Include="Views\Library\AddNew.cshtml" />
-    <Content Include="Views\Library\Publisher.cshtml" />
+    <Content Include="Views\Library\AddPublisher.cshtml" />
     <Content Include="Views\Library\BookDetails.cshtml" />
+    <Content Include="Views\Library\ListPublisher.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

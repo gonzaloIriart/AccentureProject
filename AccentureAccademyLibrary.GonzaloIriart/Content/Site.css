@@ -66,14 +66,16 @@ button {
     border: solid 1px #FF6F5E;
     color: #FF6F5E;
     background-color: inherit;
+    cursor: pointer;
 }
 
-.round-button:hover {
-    font-size: 1.6em;
-    color: #f59d93;
-    border: solid 1px #f59d93;
-    transition: all 0.1s ease-out;
-}
+    .round-button:hover {
+        font-size: 1.6em;
+        color: #f59d93;
+        border: solid 1px #f59d93;
+        transition: all 0.1s ease-out;
+        cursor: pointer;
+    }
 
 #dropdown-submenu {
     color: aliceblue;

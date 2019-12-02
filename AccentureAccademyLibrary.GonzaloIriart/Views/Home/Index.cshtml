@@ -11,6 +11,12 @@
 <head>
 </head>
 <body>
+    @if (this.ViewBag.successMessage!=null)
+    {
+        <div class="alert-success">
+             @this.ViewBag.successMessage
+        </div>
+    }
     <div class="search">
     <input type="text" value="" placeholder="Search.." /><button class="glyphicon glyphicon-search" style="background-color: #FF6F5E;"></button>
     </div>
@@ -30,7 +36,7 @@
         <div>
             <label for="selGenre">Genre</label>
             <select id="selGenre" class="form-control" value="">
-                <option>Select Genre...</option>
+                <option value="0">Select Genre...</option>
 
                 @foreach (Genre g in genres)
                 {
@@ -44,7 +50,7 @@
         <div>
             <label for="selPublisher">Publisher</label>
             <select id="selPublisher" class="form-control" value="">
-                <option>Select Publisher...</option>
+                <option value="0">Select Publisher...</option>
                 @foreach (Publisher p in publishers)
                 {
                     <option value="@p.Id">
@@ -72,12 +78,21 @@
             });
         let searchInput = document.querySelector(".search input");
         searchInput.addEventListener("keyup", () => {
-            if (searchInput.value.length >= 2) {
+            if (searchInput.value.length > 0) {
                 fetch('/Library/Search?search=' + searchInput.value)
                     .then(response => { return response.json(); })
                     .then(myJson => {
                         renderBookList(myJson);
                     });
+                if (searchInput.value.length == 0) {
+                    fetch('/Library/JsonBooks')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (myJson) {
+                renderBookList(myJson);                
+            });
+                }
             }
         });
         let btnFilter = document.querySelector("#btnFilter");
